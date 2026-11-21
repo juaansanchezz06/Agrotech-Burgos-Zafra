@@ -13,7 +13,7 @@
 
 ## Descripción
 
-Este proyecto es una solución integral de monitorización y control automatizado para explotaciones agrícolas. El sistema integra sensores distribuidos en múltiples parcelas, monitoreados y controlados mediante un **PLC industrial Siemens**, con una aplicación web responsiva que permite visualizar datos en tiempo real y controlar actuadores de riego.
+Este proyecto es una solución integral de monitorización y control automatizado para explotaciones agrícolas. El sistema integra sensores distribuidos en múltiples parcelas, monitoreados y controlados mediante un **PLC industrial Siemens**, con una aplicación web adaptable que permite visualizar datos en tiempo real y controlar actuadores de riego.
 
 Desarrollado como parte del **II Reto Agrotech 2026**, este proyecto demuestra la integración entre:
 
@@ -50,7 +50,7 @@ Esta integración entre el mundo físico y el digital y la comunicación bidirec
 - Protección de equipos (Ej: la bomba no se activa si el nivel es < 20%)
 - Historial de alertas consultable
 
-### Interfaz Responsiva
+### Interfaz Adaptable
 - Dashboard optimizado para móvil, tableta y escritorio
 - Visualización de datos históricos con gráficos
 - Control bidireccional de actuadores
