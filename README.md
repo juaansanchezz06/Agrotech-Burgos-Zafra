@@ -47,7 +47,7 @@ Esta integración entre el mundo físico y el digital y la comunicación bidirec
 
 ### Sistema de Alertas
 - Alertas automáticas cuando los valores superan umbrales configurables
-- Protección de equipos (ej: la bomba no se activa si el nivel es < 20%)
+- Protección de equipos (Ej: la bomba no se activa si el nivel es < 20%)
 - Historial de alertas consultable
 
 ### Interfaz Responsiva
@@ -80,10 +80,10 @@ Esta integración entre el mundo físico y el digital y la comunicación bidirec
 │                                                                         │
 │   ┌─────────────────────────────────────────────────────────────────┐   │
 │   │   PLC Siemens · TIA Portal V20                                  │   │
-│   │   ├─ Módulos I/O analógicos y digitales                         │  │
-│   │   ├─ Lógica de automatización (protecciones, enclavamientos)    │  │
-│   │   └─ Módulo Ethernet (protocolo S7)                             │  │
-│   └─────────────────────────────────────────────────────────────────┘  │
+│   │   ├─ Módulos I/O analógicos y digitales                         │   │
+│   │   ├─ Lógica de automatización (protecciones, enclavamientos)    │   │
+│   │   └─ Módulo Ethernet (protocolo S7)                             │   │
+│   └─────────────────────────────────────────────────────────────────┘   │
 │                                                                         │
 └────────────────────────────────┬────────────────────────────────────────┘
                                  │  Protocolo S7 / TCP-IP (python-snap7)
@@ -92,11 +92,11 @@ Esta integración entre el mundo físico y el digital y la comunicación bidirec
 │                    CAPA DE APLICACIÓN (Software IT)                     │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│   ┌──────────────────┐    ┌──────────────────┐    ┌─────────────────┐  │
-│   │  python-snap7    │───▶│  API REST        │───▶│  Aplicación Web │  │
-│   │  (comunicación   │    │  FastAPI         │    │  Reflex         │  │
-│   │   con PLC)       │    │                  │    │  (Dashboard)    │  │
-│   └──────────────────┘    └────────┬─────────┘    └─────────────────┘  │
+│   ┌──────────────────┐    ┌──────────────────┐    ┌─────────────────┐   │
+│   │  python-snap7    │───▶│  API REST       │───▶│  Aplicación Web │   │
+│   │  (comunicación   │    │  FastAPI         │    │  Reflex         │   │
+│   │   con PLC)       │    │                  │    │  (Dashboard)    │   │
+│   └──────────────────┘    └────────┬─────────┘    └─────────────────┘   │
 │                                    │                                    │
 └────────────────────────────────────┼────────────────────────────────────┘
                                      │  SQL
@@ -284,5 +284,7 @@ Desarrollado con ❤️ usando Python, Reflex y TIA Portal V20.
 ---
 
 **Nota**: Este proyecto es parte del II Reto Agrotech 2026.
+
 Fecha de entrega: **8 de diciembre de 2026**
+
 Presentación final: **16 de diciembre de 2026**
