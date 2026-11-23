@@ -39,3 +39,59 @@ def get_sensor_readings(
         .all()
     )
     return list(reversed(readings))
+
+
+@router.get("/dashboard/summary")
+def get_dashboard_summary(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    parcels = (
+        db.query(Parcel).all()
+        if current_user.role == "admin"
+        else db.query(Parcel).filter(Parcel.user_id == current_user.id).all()
+    )
+
+    result = {"fincas": [], "sistema": {}}
+
+    for parcel in parcels:
+        is_system = parcel.name.upper() in ("SISTEMA", "EXTERIOR")
+        sensors_payload = {}
+
+        for sensor in parcel.sensors:
+            # Últimas 15 lecturas para tendencia y valor actual
+            readings = (
+                db.query(SensorData)
+                .filter(SensorData.sensor_id == sensor.id)
+                .order_by(SensorData.timestamp.desc())
+                .limit(15)
+                .all()
+            )
+            readings = list(reversed(readings))
+            latest_val = readings[-1].value if readings else 0.0
+
+            sensors_payload[sensor.type] = {
+                "id": sensor.id,
+                "type": sensor.type,
+                "unit": sensor.unit,
+                "description": sensor.description,
+                "threshold_low": sensor.threshold_low,
+                "threshold_high": sensor.threshold_high,
+                "value": latest_val,
+                "history": [
+                    {"time": r.timestamp[11:19] if len(r.timestamp) >= 19 else r.timestamp, "value": r.value}
+                    for r in readings
+                ],
+            }
+
+        if is_system:
+            result["sistema"] = sensors_payload
+        else:
+            result["fincas"].append({
+                "id": parcel.id,
+                "name": parcel.name,
+                "location": parcel.location,
+                "sensors": sensors_payload,
+            })
+
+    return result

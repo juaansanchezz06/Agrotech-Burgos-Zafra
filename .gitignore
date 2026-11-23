@@ -1,4 +1,15 @@
-.venv
+# Entorno virtual y secretos
+.venv/
 .env
+
+# Caché de Python
 __pycache__/
+*.py[cod]
+
+# Archivos generados por Reflex (Frontend)
+.web/
+.states/
 *.db
+
+# Documentación interna / PDFs sueltos
+*.pdf
