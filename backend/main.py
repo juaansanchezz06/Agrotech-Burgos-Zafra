@@ -1,19 +1,20 @@
 from fastapi import FastAPI
-from .database import engine
+from fastapi.middleware.cors import CORSMiddleware
+from .database import engine, Base
 from . import models
+from .routers import auth_router, data_router
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Agrotech API")
 
-# Intentamos crear las tablas al iniciar la aplicación de forma controlada
-@app.on_event("startup")
-def startup_event():
-    try:
-        print("Conectando a la base de datos en la nube...")
-        models.Base.metadata.create_all(bind=engine)
-        print("¡Tablas creadas o verificadas con éxito!")
-    except Exception as e:
-        print(f"Error al conectar con la base de datos: {e}")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/")
-def read_root():
-    return {"status": "ok", "mensaje": "API operativa y Base de Datos en la nube"}
+app.include_router(auth_router.router)
+app.include_router(data_router.router)
